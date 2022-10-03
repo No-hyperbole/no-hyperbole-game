@@ -1,13 +1,19 @@
 function main() {
+  // microphoneInput.js
   const microphone = new Microphone();
+
+  // three.js
+  let birdMesh;
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
+  scene.background = new THREE.Color(0x461661);
+  let camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
     0.1,
     1000
   );
 
+  // renderer
   let canvas = document.getElementById("three.js");
   const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
@@ -15,26 +21,35 @@ function main() {
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
+  addEventListener("resize", (event) => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
 
-  const geometry = new THREE.BoxGeometry(1, 2, 1);
-  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-  const cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
+  // bird mesh
+  const loader = new THREE.GLTFLoader(); //using gltf, since it has texture data hardcoded
+  loader.load("./3D assets/untitled.glb", function (bird) {
+    console.log(bird);
+    const birdMesh = bird.scene;
+    scene.add(birdMesh);
+    render();
+  });
 
-  camera.position.z = 5;
+  // light
+  const light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+  scene.add(light);
+
+  // gameloop
+  function render() {
+    renderer.render(scene, camera);
+    renderer.setClearColor(0xff0000, 0);
+  }
 
   function animate() {
     requestAnimationFrame(animate);
     const volume = microphone.getVolume();
-    if (volume) {
-      cube.scale.set(1 + volume, 1 + volume, 1 + volume);
-      console.log(volume);
+    if (volume && birdMesh) {
+      birdMesh.scale.set(10 + volume, 10 + volume, 10 + volume);
     }
-
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-
-    renderer.render(scene, camera);
   }
 
   animate();
