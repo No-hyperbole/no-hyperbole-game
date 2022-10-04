@@ -3,7 +3,6 @@ function main() {
   const microphone = new Microphone();
 
   // three.js
-  let birdMesh;
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x461661);
   let camera = new THREE.PerspectiveCamera(
@@ -12,6 +11,7 @@ function main() {
     0.1,
     1000
   );
+  camera.position.set(0, 0, 20);
 
   // renderer
   let canvas = document.getElementById("three.js");
@@ -26,10 +26,11 @@ function main() {
   });
 
   // bird mesh
+  var birdMesh = null;
   const loader = new THREE.GLTFLoader(); //using gltf, since it has texture data hardcoded
   loader.load("./3D assets/untitled.glb", function (bird) {
-    console.log(bird);
-    const birdMesh = bird.scene;
+    console.log(bird.scene);
+    birdMesh = bird.scene;
     scene.add(birdMesh);
     render();
   });
@@ -44,13 +45,19 @@ function main() {
     renderer.setClearColor(0xff0000, 0);
   }
 
-  function animate() {
+  const animate = () => {
     requestAnimationFrame(animate);
     const volume = microphone.getVolume();
-    if (volume && birdMesh) {
-      birdMesh.scale.set(10 + volume, 10 + volume, 10 + volume);
+    if (volume) {
+      if (birdMesh !== null) {
+        console.log("loaded");
+        console.log(volume);
+        console.log(birdMesh);
+        birdMesh.rotation.y += volume;
+      }
     }
-  }
+    render();
+  };
 
   animate();
 }
