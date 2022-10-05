@@ -36,9 +36,9 @@ function main() {
   });
 
   // plane geometry
-  const geometry = new THREE.PlaneGeometry(10, 10);
+  const geometry = new THREE.PlaneGeometry(1, 1);
   const material1 = new THREE.MeshBasicMaterial({
-    color: 0xffff00,
+    color: 0x00ff00,
     side: THREE.DoubleSide,
   });
   const material2 = new THREE.MeshBasicMaterial({
@@ -57,6 +57,10 @@ function main() {
   const light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
   scene.add(light);
 
+  //clock
+  const clock = new THREE.Clock();
+  const elapsedTime = clock.getElapsedTime();
+
   // gameloop
   function render() {
     renderer.render(scene, camera);
@@ -67,9 +71,9 @@ function main() {
     const volume = microphone.getVolume();
     if (volume) {
       if (birdMesh !== null) {
-        birdMesh.rotation.y += 0.01;
-        birdMesh.position.x += 0.01 + volume;
-        camera.position.x += 0.01 + volume;
+        birdMesh.rotation.y += elapsedTime * 0.5 + volume;
+        birdMesh.position.x += elapsedTime + volume;
+        camera.position.x += elapsedTime + volume;
       }
     }
     render();
