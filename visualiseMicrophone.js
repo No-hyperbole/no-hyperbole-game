@@ -4,7 +4,7 @@ function main() {
 
   // three.js
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x461661);
+  scene.background = new THREE.Color(0xffffff);
   let camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
@@ -37,12 +37,21 @@ function main() {
 
   // plane geometry
   const geometry = new THREE.PlaneGeometry(10, 10);
-  const material = new THREE.MeshBasicMaterial({
+  const material1 = new THREE.MeshBasicMaterial({
     color: 0xffff00,
     side: THREE.DoubleSide,
   });
-  const plane = new THREE.Mesh(geometry, material);
-  scene.add(plane);
+  const material2 = new THREE.MeshBasicMaterial({
+    color: 0xff0000,
+    side: THREE.DoubleSide,
+  });
+  const plane1 = new THREE.Mesh(geometry, material1);
+  plane1.position.z = 10;
+  scene.add(plane1);
+  const plane2 = new THREE.Mesh(geometry, material2);
+  plane2.scale.set(2, 3, 3);
+  plane2.position.x = -10;
+  scene.add(plane2);
 
   // light
   const light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
@@ -51,7 +60,6 @@ function main() {
   // gameloop
   function render() {
     renderer.render(scene, camera);
-    renderer.setClearColor(0xff0000, 0);
   }
 
   const animate = () => {
@@ -59,7 +67,7 @@ function main() {
     const volume = microphone.getVolume();
     if (volume) {
       if (birdMesh !== null) {
-        birdMesh.rotation.y += volume;
+        birdMesh.rotation.y += 0.01;
         birdMesh.position.x += 0.01 + volume;
         camera.position.x += 0.01 + volume;
       }
