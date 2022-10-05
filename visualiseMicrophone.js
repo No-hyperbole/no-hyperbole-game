@@ -35,6 +35,15 @@ function main() {
     render();
   });
 
+  // plane geometry
+  const geometry = new THREE.PlaneGeometry(10, 10);
+  const material = new THREE.MeshBasicMaterial({
+    color: 0xffff00,
+    side: THREE.DoubleSide,
+  });
+  const plane = new THREE.Mesh(geometry, material);
+  scene.add(plane);
+
   // light
   const light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
   scene.add(light);
@@ -50,10 +59,9 @@ function main() {
     const volume = microphone.getVolume();
     if (volume) {
       if (birdMesh !== null) {
-        console.log("loaded");
-        console.log(volume);
-        console.log(birdMesh);
         birdMesh.rotation.y += volume;
+        birdMesh.position.x += 0.01 + volume;
+        camera.position.x += 0.01 + volume;
       }
     }
     render();
