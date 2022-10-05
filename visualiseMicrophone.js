@@ -35,7 +35,7 @@ function main() {
     render();
   });
 
-  // plane geometry
+  // plane geometry TODO: push planeGeometry into an array, and loop through it
   const geometry = new THREE.PlaneGeometry(1, 1);
   const material1 = new THREE.MeshBasicMaterial({
     color: 0x00ff00,
@@ -71,6 +71,7 @@ function main() {
     const volume = microphone.getVolume();
     if (volume) {
       if (birdMesh !== null) {
+        //TODO: rotate through planegeometries based on elapsedTIme, so there's no more than 6 plane geometries active at the same time. Pop them after some time!
         birdMesh.rotation.y += elapsedTime * 0.5 + volume;
         birdMesh.position.x += elapsedTime + volume;
         camera.position.x += elapsedTime + volume;
