@@ -35,21 +35,37 @@ function main() {
     render();
   });
 
+  var materialArray = [];
+  materialArray.push(
+    new THREE.MeshBasicMaterial({
+      map: new THREE.TextureLoader().load("./3D assets/textures/floral1.png"),
+      transparent: true,
+      opacity: 1,
+      color: 0xff0000,
+    })
+  );
+
+  function getRandomIntWhichIsMax3() {
+    return Math.ceil(Math.random() * 3);
+  }
+
   // plane geometry TODO: push planeGeometry into an array, and loop through it
-  const geometry = new THREE.PlaneGeometry(1, 1);
-  const material1 = new THREE.MeshBasicMaterial({
-    color: 0x00ff00,
-    side: THREE.DoubleSide,
-  });
-  const material2 = new THREE.MeshBasicMaterial({
-    color: 0xff0000,
-    side: THREE.DoubleSide,
-  });
-  const plane1 = new THREE.Mesh(geometry, material1);
+  const plane1 = new THREE.Mesh(
+    new THREE.PlaneGeometry(
+      getRandomIntWhichIsMax3(),
+      getRandomIntWhichIsMax3()
+    ),
+    materialArray[0]
+  );
   plane1.position.z = 10;
   scene.add(plane1);
-  const plane2 = new THREE.Mesh(geometry, material2);
-  plane2.scale.set(2, 3, 3);
+  const plane2 = new THREE.Mesh(
+    new THREE.PlaneGeometry(
+      getRandomIntWhichIsMax3(),
+      getRandomIntWhichIsMax3()
+    ),
+    materialArray[0]
+  );
   plane2.position.x = -10;
   scene.add(plane2);
 
@@ -58,23 +74,41 @@ function main() {
   scene.add(light);
 
   //clock
-  const clock = new THREE.Clock();
-  const elapsedTime = clock.getElapsedTime();
+  let clock = new THREE.Clock();
 
   // gameloop
   function render() {
     renderer.render(scene, camera);
   }
 
+  // game constants
+  let elapsedTime = 0;
+  let howManySecoundsToAddFlowers = 3;
+  let calledTemp = false; // this variable allows me to get into the "elapsedtime if" in the animate function (gameloop) only once, not on every screen refresh that matches the modulo operand
+  let elapsedTimeDelta = 0;
+
   const animate = () => {
+    elapsedTime = clock.getElapsedTime();
+    elapsedTimeDelta = clock.getDelta();
     requestAnimationFrame(animate);
     const volume = microphone.getVolume();
     if (volume) {
       if (birdMesh !== null) {
-        //TODO: rotate through planegeometries based on elapsedTIme, so there's no more than 6 plane geometries active at the same time. Pop them after some time!
-        birdMesh.rotation.y += elapsedTime * 0.5 + volume;
-        birdMesh.position.x += elapsedTime + volume;
-        camera.position.x += elapsedTime + volume;
+        //TODO: rotate through planegeometries based on elapsedTime, so there's no more than 6 plane geometries active at the same time. Pop them after some time!
+        birdMesh.rotation.y += elapsedTimeDelta * 0.5 + volume;
+        birdMesh.position.x += elapsedTimeDelta + volume;
+        camera.position.x += elapsedTimeDelta + volume;
+        if (
+          Math.ceil(elapsedTime) % howManySecoundsToAddFlowers === 0 &&
+          !calledTemp // we only get into this if block once, since we append new objects into the scene only once per the specified interval in the "howManySecoundsToAddFlowers" variable
+        ) {
+          calledTemp = true; // we remember, that we've been in that if, so we won't call it on the new screen refrest
+          console.log("10sek");
+        }
+        if (Math.floor(elapsedTime) % howManySecoundsToAddFlowers === 0) {
+          // HACK: we reset the calledTemp variable, so we can add new objects when the new interval ends
+          calledTemp = false;
+        }
       }
     }
     render();
