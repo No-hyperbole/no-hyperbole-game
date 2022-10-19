@@ -1,3 +1,5 @@
+import { VRButton } from "./three.js build/VRButton.js";
+
 function main() {
   // game constants
   let elapsedTime = 0;
@@ -39,10 +41,17 @@ function main() {
     antialias: true,
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.xr.enabled = true; // we have to enable xr in order to allow for VR session
   document.body.appendChild(renderer.domElement);
   addEventListener("resize", (event) => {
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
+
+  // user (VR entity)
+  let user = new THREE.Group();
+  user.position.set(0, 0, 0);
+  user.add(camera);
+  scene.add(user);
 
   // surface
   const surface = new THREE.Mesh(
@@ -58,7 +67,6 @@ function main() {
   loader.load("./3D assets/untitled.glb", function (bird) {
     birdMesh = bird.scene;
     scene.add(birdMesh);
-    render();
   });
 
   // material array
@@ -144,19 +152,21 @@ function main() {
   let clock = new THREE.Clock();
 
   // gameloop
-  function render() {
-    renderer.render(scene, camera);
+  function animate() {
+    renderer.setAnimationLoop(function () {
+      renderer.render(scene, camera);
+      gameLoop();
+    });
   }
 
-  const animate = () => {
+  const gameLoop = () => {
     elapsedTime = clock.getElapsedTime();
     elapsedTimeDelta = clock.getDelta();
-    requestAnimationFrame(animate);
     const volume = microphone.getVolume();
     if (volume) {
       if (birdMesh !== null) {
         birdMesh.position.z -= elapsedTimeDelta + volume; // this way the birdmesh stays always in the same distance away from the viewer
-        camera.position.z -= elapsedTimeDelta + volume; // this way the camera stays always in the same place
+        user.position.z -= elapsedTimeDelta + volume; // this way the camera stays always in the same place
         if (
           Math.ceil(elapsedTime) % howManySecoundsToAddFlowers === 0 &&
           !calledTemp // we only get into this if block once, since we append new objects into the scene only once per the specified interval in the "howManySecoundsToAddFlowers" variable
@@ -170,9 +180,6 @@ function main() {
               scene.remove(planeShadowArray.shift());
             }
             createPlanes(1, birdMesh.position.z * -1);
-            console.log(planeArray.length);
-            console.log(planeShadowArray.length);
-            console.log(islandArray.length);
           }
         }
         if (Math.floor(elapsedTime) % howManySecoundsToAddFlowers === 0) {
@@ -181,8 +188,12 @@ function main() {
         }
       }
     }
-    render();
+    renderer.render(scene, camera);
   };
 
   animate();
+
+  document.body.appendChild(VRButton.createButton(renderer));
 }
+
+main();
