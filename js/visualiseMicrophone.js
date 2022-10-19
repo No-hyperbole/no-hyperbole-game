@@ -146,9 +146,9 @@ function main() {
         user.position.z -= elapsedTimeDelta + volume; // this way the camera stays always in the same place
         if (
           Math.ceil(elapsedTime) % howManySecoundsToAddFlowers === 0 &&
-          !calledTemp // we only get into this if block once, since we append new objects into the scene only once per the specified interval in the "howManySecoundsToAddFlowers" variable
+          !calledTimeTemp // we only get into this if block once, since we append new objects into the scene only once per the specified interval in the "howManySecoundsToAddFlowers" variable
         ) {
-          calledTemp = true; // we remember, that we've been in that if, so we won't call it on the new screen refrest
+          calledTimeTemp = true; // we remember, that we've been in that if, so we won't call it on the new screen refrest
           for (let i = 0; i < howManyPlanesAreAddedAndRemoved; i++) {
             if (planeArray.length >= maxPlanesAmount) {
               // we start with a set amount of floral planes, but we add to that amount until we exceed a set threshold
@@ -157,13 +157,40 @@ function main() {
               scene.remove(planeShadowArray.shift());
             }
             createPlanes(1, birdMesh.position.z * -1);
+            console.log("time elapsed addition");
           }
         }
         if (Math.floor(elapsedTime) % howManySecoundsToAddFlowers === 0) {
-          // HACK: we reset the calledTemp variable, so we can add new objects when the new interval ends
-          calledTemp = false;
+          // HACK: we reset the calledTimeTemp variable, so we can add new objects when the new interval ends
+          calledTimeTemp = false;
         }
-        console.log(user.position.z);
+        if (
+          Math.ceil(user.position.z) % howManyMetersToAddFlowers === 0 &&
+          !calledDistanceTemp // we only get into this if block once, since we append new objects into the scene only once per the specified interval in the "howManySecoundsToAddFlowers" variable
+        ) {
+          calledDistanceTemp = true; // we remember, that we've been in that if, so we won't call it on the new screen refrest
+          for (let i = 0; i < howManyPlanesAreAddedAndRemoved; i++) {
+            if (planeArray.length >= maxPlanesAmount) {
+              scene.remove(planeArray.shift());
+              scene.remove(islandArray.shift());
+              scene.remove(planeShadowArray.shift());
+            }
+            createPlanes(1, birdMesh.position.z * -1);
+            console.log("distance traveled addition");
+          }
+        }
+        if (Math.floor(user.position.z) % howManyMetersToAddFlowers === 0) {
+          calledDistanceTemp = false;
+        }
+        // STATISTICS:
+        console.log(
+          "planes",
+          planeArray.length,
+          "shadows",
+          planeShadowArray.length,
+          "islands",
+          islandArray.length
+        );
       }
     }
     renderer.render(scene, camera);
