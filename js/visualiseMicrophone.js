@@ -1,23 +1,6 @@
-import { VRButton } from "./three.js build/VRButton.js";
+import { VRButton } from "../three.js build/VRButton.js";
 
 function main() {
-  // game constants
-  let elapsedTime = 0;
-  let howManySecoundsToAddFlowers = 3;
-  let calledTemp = false; // this variable allows me to get into the "elapsedtime if" in the animate function (gameloop) only once, not on every screen refresh that matches the modulo operand
-  let elapsedTimeDelta = 0;
-  let howManyPlanesExistOnStart = 20;
-  let maxPlanesAmount = 100;
-  let planeArray = []; // here we will store all the planes with floral textures on them
-  let planeShadowArray = [];
-  let islandArray = [];
-  let howManyPlanesAreAddedAndRemoved = 4;
-
-  // just a random integer (from a range 1 - maxVal) function definition
-  function getRandomInt(maxVal) {
-    return Math.ceil(Math.random() * maxVal);
-  }
-
   // microphoneInput.js
   const microphone = new Microphone();
 
@@ -29,7 +12,7 @@ function main() {
   let camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
-    0.1,
+    0.01,
     1000
   );
   camera.position.set(0, 5, 20);
@@ -81,8 +64,7 @@ function main() {
     })
   );
 
-  // planes go into an array, in which we can set the max amount of exising entities
-  function makeOnePlane(x, z, size) {
+  function makeOneFloralPlane(x, z, size) {
     const textureFileAmount = materialArray.length;
     const material = materialArray[getRandomInt(textureFileAmount) - 1]; // random png file as texture
     const geometry = new THREE.PlaneGeometry(size, size);
@@ -91,6 +73,7 @@ function main() {
     plane.position.x = x;
     plane.position.y = size / 2;
     plane.position.z = z;
+    plane.rotation.y = Math.PI * (getRandomInt(18) * 0.1);
     return plane;
   }
 
@@ -128,6 +111,7 @@ function main() {
     return islandCircle;
   }
 
+  // planes go into an array, in which we can set the max amount of exising entities
   function createPlanes(amount, distanceFromStart) {
     //shadow planes, floral planes and island planes
     const size = getRandomInt(10); // we generate only one random number, so the aspect ratio is 1:1
@@ -138,7 +122,7 @@ function main() {
       if (leftOrRight % 2 === 0) {
         x = x * -1;
       }
-      planeArray.push(makeOnePlane(x, z, size));
+      planeArray.push(makeOneFloralPlane(x, z, size));
       planeShadowArray.push(makeOnePlaneShadow(x, z, size));
       islandArray.push(makeOneIsland(x, z, size));
     }
@@ -167,6 +151,7 @@ function main() {
     if (volume) {
       if (birdMesh !== null) {
         birdMesh.position.z -= elapsedTimeDelta + volume; // this way the birdmesh stays always in the same distance away from the viewer
+        surface.position.z -= elapsedTimeDelta + volume;
         user.position.z -= elapsedTimeDelta + volume; // this way the camera stays always in the same place
         if (
           Math.ceil(elapsedTime) % howManySecoundsToAddFlowers === 0 &&
@@ -187,6 +172,7 @@ function main() {
           // HACK: we reset the calledTemp variable, so we can add new objects when the new interval ends
           calledTemp = false;
         }
+        console.log(user.position.z);
       }
     }
     renderer.render(scene, camera);
