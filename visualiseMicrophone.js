@@ -77,6 +77,7 @@ function main() {
       transparent: true,
       opacity: 1,
       color: 0xffffff,
+      side: THREE.DoubleSide,
     })
   );
 
