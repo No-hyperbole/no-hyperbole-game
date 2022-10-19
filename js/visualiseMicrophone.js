@@ -45,24 +45,15 @@ function main() {
   scene.add(surface);
 
   // bird mesh
-  var birdMesh = null;
+  let birdMesh = null;
   const loader = new THREE.GLTFLoader(); //using gltf, since it has texture data hardcoded
-  loader.load("./3D assets/untitled.glb", function (bird) {
+  loader.load("./3D assets/bird.glb", function (bird) {
     birdMesh = bird.scene;
+    birdMesh.position.set(0, 5, -5);
+    birdMesh.rotation.y = Math.PI * 0.5;
+    birdMesh.scale.set(2, 2, 2);
     scene.add(birdMesh);
   });
-
-  // material array
-  var materialArray = [];
-  materialArray.push(
-    new THREE.MeshBasicMaterial({
-      map: new THREE.TextureLoader().load("./3D assets/textures/floral1.png"),
-      transparent: true,
-      opacity: 1,
-      color: 0xffffff,
-      side: THREE.DoubleSide,
-    })
-  );
 
   function makeOneFloralPlane(x, z, size) {
     const textureFileAmount = materialArray.length;
