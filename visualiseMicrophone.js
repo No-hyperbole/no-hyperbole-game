@@ -7,7 +7,14 @@ function main() {
   let howManyPlanesExistOnStart = 20;
   let maxPlanesAmount = 100;
   let planeArray = []; // here we will store all the planes with floral textures on them
+  let planeShadowArray = [];
+  let islandArray = [];
   let howManyPlanesAreAddedAndRemoved = 4;
+
+  // just a random integer (from a range 1 - maxVal) function definition
+  function getRandomInt(maxVal) {
+    return Math.ceil(Math.random() * maxVal);
+  }
 
   // microphoneInput.js
   const microphone = new Microphone();
@@ -40,7 +47,7 @@ function main() {
   // surface
   const surface = new THREE.Mesh(
     new THREE.PlaneGeometry(1000, 1000),
-    new THREE.MeshBasicMaterial({ color: 0x76716a, side: THREE.DoubleSide })
+    new THREE.MeshBasicMaterial({ color: 0xdcddd8, side: THREE.DoubleSide })
   );
   surface.rotation.x = Math.PI / 2;
   scene.add(surface);
@@ -54,6 +61,7 @@ function main() {
     render();
   });
 
+  // material array
   var materialArray = [];
   materialArray.push(
     new THREE.MeshBasicMaterial({
@@ -64,15 +72,10 @@ function main() {
     })
   );
 
-  function getRandomInt(maxVal) {
-    return Math.ceil(Math.random() * maxVal);
-  }
-
   // planes go into an array, in which we can set the max amount of exising entities
-  function makeOnePlane(x, z) {
+  function makeOnePlane(x, z, size) {
     const textureFileAmount = materialArray.length;
     const material = materialArray[getRandomInt(textureFileAmount) - 1]; // random png file as texture
-    const size = getRandomInt(10); // we generate only one random number, so the aspect ratio is 1:1
     const geometry = new THREE.PlaneGeometry(size, size);
     const plane = new THREE.Mesh(geometry, material);
     scene.add(plane);
@@ -82,7 +85,43 @@ function main() {
     return plane;
   }
 
+  function makeOnePlaneShadow(x, z, size) {
+    // add shadow beneath the floral plane
+    const shadowGeometry = new THREE.CircleGeometry(size / 5, 10);
+    const shadowMaterial = new THREE.MeshBasicMaterial({
+      color: 0x121718,
+      opacity: 1,
+      side: THREE.DoubleSide,
+    });
+    const shadowCircle = new THREE.Mesh(shadowGeometry, shadowMaterial);
+    scene.add(shadowCircle);
+    shadowCircle.position.x = x;
+    shadowCircle.position.y = 0.1;
+    shadowCircle.position.z = z;
+    shadowCircle.rotation.x = Math.PI / 2;
+    return shadowCircle;
+  }
+
+  function makeOneIsland(x, z, size) {
+    // randomize the landscape a bit
+    const islandGeometry = new THREE.CircleGeometry(size, getRandomInt(10));
+    const islandMaterial = new THREE.MeshBasicMaterial({
+      color: 0x76716a,
+      opacity: 1,
+      side: THREE.DoubleSide,
+    });
+    const islandCircle = new THREE.Mesh(islandGeometry, islandMaterial);
+    scene.add(islandCircle);
+    islandCircle.position.x = x;
+    islandCircle.position.y = 0.05;
+    islandCircle.position.z = z;
+    islandCircle.rotation.x = Math.PI / 2;
+    return islandCircle;
+  }
+
   function createPlanes(amount, distanceFromStart) {
+    //shadow planes, floral planes and island planes
+    const size = getRandomInt(10); // we generate only one random number, so the aspect ratio is 1:1
     for (let i = 0; i < amount; i++) {
       let x = getRandomInt(30);
       let z = getRandomInt(20) * -1 - distanceFromStart;
@@ -90,7 +129,9 @@ function main() {
       if (leftOrRight % 2 === 0) {
         x = x * -1;
       }
-      planeArray.push(makeOnePlane(x, z));
+      planeArray.push(makeOnePlane(x, z, size));
+      planeShadowArray.push(makeOnePlaneShadow(x, z, size));
+      islandArray.push(makeOneIsland(x, z, size));
     }
   }
   createPlanes(howManyPlanesExistOnStart, 0);
@@ -125,9 +166,13 @@ function main() {
             if (planeArray.length >= maxPlanesAmount) {
               // we start with a set amount of floral planes, but we add to that amount until we exceed a set threshold
               scene.remove(planeArray.shift());
+              scene.remove(islandArray.shift());
+              scene.remove(planeShadowArray.shift());
             }
             createPlanes(1, birdMesh.position.z * -1);
             console.log(planeArray.length);
+            console.log(planeShadowArray.length);
+            console.log(islandArray.length);
           }
         }
         if (Math.floor(elapsedTime) % howManySecoundsToAddFlowers === 0) {
