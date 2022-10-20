@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style/style.css" />
-    <link rel="icon" type="image/x-icon" href="/favicon/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="./favicon/favicon.png" />
     <title>no_hyperbole</title>
     <script src="./three.js build/three.js"></script>
     <script src="./three.js build/GLTFLoader.js"></script>
@@ -14,9 +14,23 @@
     <script src="./js/gameConstants.js"></script>
     <script src="./js/getRandonInt.js"></script>
     <script src="./js/materialArray.js"></script>
+    <script src="./js/splashScreenSlideOut.js"></script>
   </head>
   <body>
-    <div class="loadingScreen"></div>
+    <div class="splashScreen" onclick="splashScreenSlideOut()">
+      <div class="splashScreen__logo">
+        <img
+          class="splashScreen__logo__graph"
+          src="./logo/logoHyperbole.svg"
+          alt="Graph of a hyperbole."
+        />
+        <img
+          class="splashScreen__logo__text"
+          src="./logo/logoText.svg"
+          alt="Text saying `no` which is quite big. On the bottom right of it is a text saying `hyperbole`"
+        />
+      </div>
+    </div>
     <div class="instructions"></div>
     <canvas id="three.js"></canvas>
   </body>
