@@ -15,7 +15,6 @@ function main() {
     0.01,
     1000
   );
-  camera.position.set(0, 5, 20);
 
   // renderer
   let canvas = document.getElementById("three.js");
@@ -32,7 +31,7 @@ function main() {
 
   // user (VR entity)
   let user = new THREE.Group();
-  user.position.set(0, 5, 0);
+  user.position.set(0, 5, 10);
   user.add(camera);
   scene.add(user);
 
@@ -197,6 +196,16 @@ function main() {
   };
 
   animate();
+
+  // make the experience more responsive by recalculating the aspect ratio
+  window.addEventListener("resize", onWindowResize, false);
+
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
 
   document.body.appendChild(VRButton.createButton(renderer));
 }
