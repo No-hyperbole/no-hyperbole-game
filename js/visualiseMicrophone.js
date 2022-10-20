@@ -32,7 +32,7 @@ function main() {
 
   // user (VR entity)
   let user = new THREE.Group();
-  user.position.set(0, 0, 0);
+  user.position.set(0, 5, 0);
   user.add(camera);
   scene.add(user);
 
@@ -49,8 +49,8 @@ function main() {
   const loader = new THREE.GLTFLoader(); //using gltf, since it has texture data hardcoded
   loader.load("./3D assets/bird.glb", function (bird) {
     birdMesh = bird.scene;
-    birdMesh.position.set(0, 5, -5);
-    birdMesh.rotation.y = Math.PI * 0.5;
+    birdMesh.position.set(0, 2, -3);
+    birdMesh.rotation.set(Math.PI, Math.PI * 1.5, Math.PI);
     birdMesh.scale.set(2, 2, 2);
     scene.add(birdMesh);
   });
@@ -105,10 +105,10 @@ function main() {
   // planes go into an array, in which we can set the max amount of exising entities
   function createPlanes(amount, distanceFromStart) {
     //shadow planes, floral planes and island planes
-    const size = getRandomInt(10); // we generate only one random number, so the aspect ratio is 1:1
+    const size = (getRandomInt(3) + 1) * 6; // we generate only one random number, so the aspect ratio is 1:1
     for (let i = 0; i < amount; i++) {
-      let x = getRandomInt(30);
-      let z = getRandomInt(20) * -1 - distanceFromStart;
+      let x = getRandomInt(60);
+      let z = getRandomInt(60) * -1 - distanceFromStart;
       let leftOrRight = getRandomInt(2); // since we start our local reference point at 0,0,0, we have to put some planes on the left, and some on the right. getRandomInt function only generates integers.
       if (leftOrRight % 2 === 0) {
         x = x * -1;
