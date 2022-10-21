@@ -38,20 +38,31 @@ function main() {
   // surface
   const surface = new THREE.Mesh(
     new THREE.PlaneGeometry(1000, 1000),
-    new THREE.MeshBasicMaterial({ color: 0xdcddd8, side: THREE.DoubleSide })
+    new THREE.MeshBasicMaterial({ color: 0xb4988b, side: THREE.DoubleSide })
   );
   surface.rotation.x = Math.PI / 2;
   scene.add(surface);
 
-  // bird mesh
+  const loader = new THREE.GLTFLoader();
+
   let birdMesh = null;
-  const loader = new THREE.GLTFLoader(); //using gltf, since it has texture data hardcoded
-  loader.load("./3D assets/bird.glb", function (bird) {
+  let mixer;
+  loader.load("./3D assets/bird_anim.glb", function (bird) {
     birdMesh = bird.scene;
-    birdMesh.position.set(0, 2, -3);
-    birdMesh.rotation.set(Math.PI, Math.PI * 1.5, Math.PI);
-    birdMesh.scale.set(2, 2, 2);
     scene.add(birdMesh);
+    birdMesh.position.set(0, 0, -10);
+    birdMesh.rotation.set(Math.PI, Math.PI * 2, Math.PI);
+    birdMesh.scale.set(2, 2, 2);
+    mixer = new THREE.AnimationMixer(birdMesh);
+    const clips = bird.animations;
+    const clip = THREE.AnimationClip.findByName(
+      clips,
+      "Armature|CINEMA_4D_Main|Layer0"
+    );
+    const action = mixer.clipAction(clip);
+    console.log(action);
+    action.timeScale = 0.3; // the bird needs to flap it's wings a bit slower
+    action.play();
   });
 
   function makeOneFloralPlane(x, z, size) {
@@ -140,6 +151,9 @@ function main() {
     const volume = microphone.getVolume();
     if (volume) {
       if (birdMesh !== null) {
+        if (mixer) {
+          mixer.update(volume);
+        }
         birdMesh.position.z -= elapsedTimeDelta + volume; // this way the birdmesh stays always in the same distance away from the viewer
         surface.position.z -= elapsedTimeDelta + volume;
         user.position.z -= elapsedTimeDelta + volume; // this way the camera stays always in the same place
@@ -156,7 +170,7 @@ function main() {
               scene.remove(planeShadowArray.shift());
             }
             createPlanes(1, birdMesh.position.z * -1);
-            console.log("time elapsed addition");
+            // console.log("time elapsed addition");
           }
         }
         if (Math.floor(elapsedTime) % howManySecoundsToAddFlowers === 0) {
@@ -175,21 +189,21 @@ function main() {
               scene.remove(planeShadowArray.shift());
             }
             createPlanes(1, birdMesh.position.z * -1);
-            console.log("distance traveled addition");
+            // console.log("distance traveled addition");
           }
         }
         if (Math.floor(user.position.z) % howManyMetersToAddFlowers === 0) {
           calledDistanceTemp = false;
         }
         // STATISTICS:
-        console.log(
-          "planes",
-          planeArray.length,
-          "shadows",
-          planeShadowArray.length,
-          "islands",
-          islandArray.length
-        );
+        // // console.log(
+        //   "planes",
+        //   planeArray.length,
+        //   "shadows",
+        //   planeShadowArray.length,
+        //   "islands",
+        //   islandArray.length
+        // );
       }
     }
     renderer.render(scene, camera);
