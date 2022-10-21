@@ -16,4 +16,4 @@ We use the microphone to measure the noise levels. Then we use this data to calc
 
 ## License
 
-[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/))
+[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
