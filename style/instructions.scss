@@ -27,8 +27,8 @@
     width: 30%;
     height: 100%;
     @media screen and (orientation: portrait) {
-      height: 30%;
-      width: 100%;
+      height: 20%;
+      width: 80%;
     }
 
     &__logo {
@@ -50,6 +50,9 @@
     &__text {
       display: flex;
       margin-right: 5%;
+      @media screen and (orientation: portrait) {
+        margin-right: 0%;
+      }
     }
   }
 

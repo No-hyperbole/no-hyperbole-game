@@ -216,8 +216,8 @@
 }
 @media screen and (orientation: portrait) {
   .instructions__1 {
-    height: 30%;
-    width: 100%;
+    height: 20%;
+    width: 80%;
   }
 }
 .instructions__1__logo {
@@ -239,6 +239,11 @@
 .instructions__1__text {
   display: flex;
   margin-right: 5%;
+}
+@media screen and (orientation: portrait) {
+  .instructions__1__text {
+    margin-right: 0%;
+  }
 }
 .instructions__2 {
   display: flex;
