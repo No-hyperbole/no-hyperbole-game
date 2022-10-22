@@ -15,6 +15,7 @@
     <script src="./js/getRandonInt.js"></script>
     <script src="./js/materialArray.js"></script>
     <script src="./js/splashScreenSlideOut.js"></script>
+    <script src="./js/manipulateInstructionsVisibility.js"></script>
   </head>
   <body>
     <div class="splashScreen" onclick="splashScreenSlideOut()">
@@ -31,7 +32,63 @@
         />
       </div>
     </div>
-    <div class="instructions"></div>
+    <div class="instructions">
+      <div class="instructions__1">
+        <div class="instructions__1__logo">
+          <img
+            class="instructions__1__logo__img"
+            src="./logo/logoFull.svg"
+            alt="A hyperbole, with words `no` in the upper left corner and `hyperbole` in the lower right"
+          />
+        </div>
+        <div class="instructions__1__text">
+          Can you feel that? It`s the aroma of the ozone, the purest smell in
+          the world. The smell of a fresh start.
+          <br />
+          <br />
+          Do not hyperbolize. Get rid of your worries. The only thing that
+          matters is you and your breath.
+        </div>
+      </div>
+      <div class="instructions__2">
+        <div class="instructions__2__upperText1">Let`s fly. How?</div>
+        <div class="instructions__2__upperText2">Invocate your mantra...</div>
+        <div class="instructions__2__breatheAnimation">
+          <img
+            class="instructions__2__breatheAnimation__1"
+            src="./breathe/1.svg"
+            alt=""
+          />
+          <img
+            class="instructions__2__breatheAnimation__2"
+            src="./breathe/2.svg"
+            alt=""
+          />
+          <img
+            class="instructions__2__breatheAnimation__3"
+            src="./breathe/3.svg"
+            alt=""
+          />
+          <img
+            class="instructions__2__breatheAnimation__4"
+            src="./breathe/4.svg"
+            alt=""
+          />
+          <img
+            class="instructions__2__breatheAnimation__5"
+            src="./breathe/5.svg"
+            alt=""
+          />
+        </div>
+        <div class="instructions__2__bottomText">Vocalize loud and clear!</div>
+      </div>
+      <div class="instructions__3">
+        <button class="instructions__3__start" onclick="hideInstructions()">
+          Start game
+        </button>
+      </div>
+    </div>
+    <button class="backToInstructions" onclick="showInstructions()">i</button>
     <canvas id="three.js"></canvas>
   </body>
 </html>

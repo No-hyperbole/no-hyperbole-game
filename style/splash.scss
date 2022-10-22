@@ -1,21 +1,5 @@
-@import "../style/variables.scss";
-@import "../style/animations.scss";
-
-// HTML ELEMENTS
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  overflow: hidden;
-}
-
-canvas {
-  background: $black;
-}
+@import "./variables.scss";
+@import "./animations.scss";
 
 // CLASSES
 
@@ -25,7 +9,7 @@ canvas {
   position: absolute;
   align-items: center;
   justify-content: center;
-  z-index: 10001;
+  z-index: 10010;
   width: 100%;
   height: 100%;
   background-color: $lightGray;
@@ -37,12 +21,12 @@ canvas {
     align-items: center;
     justify-content: center;
     @media screen and (orientation: landscape) {
-      width: 30%;
-      height: 30%;
+      width: 15%;
+      height: 15%;
     }
     width: 30%;
     height: 30%;
-    z-index: 10002;
+    z-index: 10011;
 
     &__graph {
       animation-name: zoomIn;
@@ -58,18 +42,5 @@ canvas {
   &__logo > img {
     display: flex;
     position: absolute;
-  }
-
-  &__slideOut {
-    transition: 1s ease;
-    display: flex;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    z-index: 10001;
-    width: 100%;
-    height: 100%;
-    background-color: $lightGray;
-    bottom: 100%;
   }
 }

@@ -1,0 +1,21 @@
+@import "./animations.scss";
+@import "./instructions.scss";
+@import "./splash.scss";
+@import "./variables.scss";
+@import "./backToInstructions.scss";
+
+// HTML ELEMENTS
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "CrimsonText";
+}
+
+body {
+  overflow: hidden;
+}
+
+canvas {
+  background: $black;
+}

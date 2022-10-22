@@ -60,7 +60,6 @@ function main() {
       "Armature|CINEMA_4D_Main|Layer0"
     );
     const action = mixer.clipAction(clip);
-    console.log(action);
     action.timeScale = 0.3; // the bird needs to flap it's wings a bit slower
     action.play();
   });

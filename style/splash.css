@@ -1,3 +1,7 @@
+@font-face {
+  font-family: CrimsonText;
+  src: url(../fonts/Crimson_Text/CrimsonText-Regular.ttf);
+}
 @-webkit-keyframes zoomIn {
   from {
     transform: scale(0);
@@ -183,4 +187,47 @@
   100% {
     transform: scale(0%);
   }
-}/*# sourceMappingURL=animations.css.map */
+}
+.splashScreen {
+  transition: 1s ease;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  z-index: 10010;
+  width: 100%;
+  height: 100%;
+  background-color: #dcddd8;
+  bottom: 0%;
+}
+.splashScreen__logo {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: 30%;
+  z-index: 10011;
+}
+@media screen and (orientation: landscape) {
+  .splashScreen__logo {
+    width: 15%;
+    height: 15%;
+  }
+}
+.splashScreen__logo__graph {
+  -webkit-animation-name: zoomIn;
+          animation-name: zoomIn;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+}
+.splashScreen__logo__text {
+  -webkit-animation-name: fadeInLogo;
+          animation-name: fadeInLogo;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+}
+.splashScreen__logo > img {
+  display: flex;
+  position: absolute;
+}/*# sourceMappingURL=splash.css.map */

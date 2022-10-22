@@ -1,0 +1,166 @@
+@import "./variables.scss";
+@import "./animations.scss";
+
+// CLASSES
+
+.instructions {
+  transition: 1s ease;
+  display: flex;
+  flex-direction: row;
+  @media screen and (orientation: portrait) {
+    flex-direction: column;
+  }
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  z-index: 10002;
+  width: 100%;
+  height: 100%;
+  background-color: $lightGray;
+  bottom: 0%;
+
+  &__1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 10002;
+    width: 30%;
+    height: 100%;
+    @media screen and (orientation: portrait) {
+      height: 30%;
+    }
+
+    &__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @media screen and (orientation: portrait) {
+        display: none;
+      }
+      width: 30%;
+      height: 20%;
+      z-index: 10003;
+    }
+
+    &__logo > img {
+      width: 100%;
+    }
+
+    &__text {
+      display: flex;
+      margin-right: 5%;
+    }
+  }
+
+  &__2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10002;
+    width: 30%;
+    height: 100%;
+    @media screen and (orientation: portrait) {
+      height: 50%;
+    }
+
+    &__upperText1 {
+      text-align: center;
+      margin: 0%;
+      @media screen and (orientation: portrait) {
+        margin: 0%;
+      }
+      font-size: 2em;
+    }
+
+    &__upperText2 {
+      text-align: center;
+      margin: 5%;
+      @media screen and (orientation: portrait) {
+        margin: 0%;
+      }
+      font-size: 1.5em;
+    }
+
+    &__breatheAnimation {
+      margin: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @media screen and (orientation: landscape) {
+        width: 20%;
+        height: 30%;
+      }
+      width: 20%;
+      height: 30%;
+      z-index: 10003;
+
+      &__1 {
+        animation-name: scaleUp;
+        animation-duration: 2s;
+      }
+
+      &__2 {
+        animation-name: scaleUpInfinite5;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+      }
+
+      &__3 {
+        animation-name: scaleUpInfinite4;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+      }
+
+      &__4 {
+        animation-name: scaleUpInfinite3;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+      }
+
+      &__5 {
+        animation-name: scaleUpInfinite2;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+      }
+    }
+
+    &__breatheAnimation > img {
+      width: 20%;
+      height: 20%;
+      display: flex;
+      position: absolute;
+    }
+
+    &__bottomText {
+      text-align: center;
+      margin: 0%;
+      @media screen and (orientation: portrait) {
+        margin: 0%;
+      }
+      font-size: 1.5em;
+    }
+  }
+
+  &__3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10003;
+    width: 30%;
+    height: 100%;
+    @media screen and (orientation: portrait) {
+      height: 10%;
+    }
+
+    &__start {
+      background-color: $mediumGray;
+      color: $white;
+      padding: 1em;
+      border-radius: 2em;
+      border: 0px;
+      font-size: 1.5em;
+    }
+  }
+}

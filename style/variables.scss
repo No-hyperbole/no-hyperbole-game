@@ -1,3 +1,9 @@
+//FONT DEFINITIONS
+@font-face {
+  font-family: CrimsonText;
+  src: url(../fonts/Crimson_Text/CrimsonText-Regular.ttf);
+}
+
 // COLORS
 $white: white;
 $lightGray: #dcddd8;
@@ -9,4 +15,4 @@ $brown: #3c2018;
 $black: #000000;
 
 // VARIABLES
-$font: "Poppins", sans-serif;
+$font: CrimsonText;

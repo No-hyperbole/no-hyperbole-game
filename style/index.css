@@ -1,0 +1,733 @@
+@-webkit-keyframes zoomIn {
+  from {
+    transform: scale(0);
+    filter: opacity(0);
+  }
+  to {
+    transform: scale(1);
+    filter: opacity(1);
+  }
+}
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+    filter: opacity(0);
+  }
+  to {
+    transform: scale(1);
+    filter: opacity(1);
+  }
+}
+@-webkit-keyframes fadeInLogo {
+  0% {
+    filter: opacity(0);
+  }
+  50% {
+    filter: opacity(0);
+  }
+  100% {
+    filter: opacity(1);
+  }
+}
+@keyframes fadeInLogo {
+  0% {
+    filter: opacity(0);
+  }
+  50% {
+    filter: opacity(0);
+  }
+  100% {
+    filter: opacity(1);
+  }
+}
+@-webkit-keyframes slideUp {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(0%, 100%);
+  }
+}
+@keyframes slideUp {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(0%, 100%);
+  }
+}
+@-webkit-keyframes scaleUp {
+  0% {
+    transform: scale(0%);
+  }
+  100% {
+    transform: scale(100%);
+  }
+}
+@keyframes scaleUp {
+  0% {
+    transform: scale(0%);
+  }
+  100% {
+    transform: scale(100%);
+  }
+}
+@-webkit-keyframes scaleUpInfinite2 {
+  0% {
+    transform: scale(0%);
+  }
+  10% {
+    transform: scale(100%);
+  }
+  65% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite2 {
+  0% {
+    transform: scale(0%);
+  }
+  10% {
+    transform: scale(100%);
+  }
+  65% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@-webkit-keyframes scaleUpInfinite3 {
+  0% {
+    transform: scale(0%);
+  }
+  20% {
+    transform: scale(100%);
+  }
+  70% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite3 {
+  0% {
+    transform: scale(0%);
+  }
+  20% {
+    transform: scale(100%);
+  }
+  70% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@-webkit-keyframes scaleUpInfinite4 {
+  0% {
+    transform: scale(0%);
+  }
+  30% {
+    transform: scale(100%);
+  }
+  75% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite4 {
+  0% {
+    transform: scale(0%);
+  }
+  30% {
+    transform: scale(100%);
+  }
+  75% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@-webkit-keyframes scaleUpInfinite5 {
+  0% {
+    transform: scale(0%);
+  }
+  40% {
+    transform: scale(100%);
+  }
+  80% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite5 {
+  0% {
+    transform: scale(0%);
+  }
+  40% {
+    transform: scale(100%);
+  }
+  80% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@font-face {
+  font-family: CrimsonText;
+  src: url(../fonts/Crimson_Text/CrimsonText-Regular.ttf);
+}
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+    filter: opacity(0);
+  }
+  to {
+    transform: scale(1);
+    filter: opacity(1);
+  }
+}
+@keyframes fadeInLogo {
+  0% {
+    filter: opacity(0);
+  }
+  50% {
+    filter: opacity(0);
+  }
+  100% {
+    filter: opacity(1);
+  }
+}
+@keyframes slideUp {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(0%, 100%);
+  }
+}
+@keyframes scaleUp {
+  0% {
+    transform: scale(0%);
+  }
+  100% {
+    transform: scale(100%);
+  }
+}
+@keyframes scaleUpInfinite2 {
+  0% {
+    transform: scale(0%);
+  }
+  10% {
+    transform: scale(100%);
+  }
+  65% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite3 {
+  0% {
+    transform: scale(0%);
+  }
+  20% {
+    transform: scale(100%);
+  }
+  70% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite4 {
+  0% {
+    transform: scale(0%);
+  }
+  30% {
+    transform: scale(100%);
+  }
+  75% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite5 {
+  0% {
+    transform: scale(0%);
+  }
+  40% {
+    transform: scale(100%);
+  }
+  80% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+.instructions {
+  transition: 1s ease;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  z-index: 10002;
+  width: 100%;
+  height: 100%;
+  background-color: #dcddd8;
+  bottom: 0%;
+}
+@media screen and (orientation: portrait) {
+  .instructions {
+    flex-direction: column;
+  }
+}
+.instructions__1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 10002;
+  width: 30%;
+  height: 100%;
+}
+@media screen and (orientation: portrait) {
+  .instructions__1 {
+    height: 30%;
+  }
+}
+.instructions__1__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: 20%;
+  z-index: 10003;
+}
+@media screen and (orientation: portrait) {
+  .instructions__1__logo {
+    display: none;
+  }
+}
+.instructions__1__logo > img {
+  width: 100%;
+}
+.instructions__1__text {
+  display: flex;
+  margin-right: 5%;
+}
+.instructions__2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10002;
+  width: 30%;
+  height: 100%;
+}
+@media screen and (orientation: portrait) {
+  .instructions__2 {
+    height: 50%;
+  }
+}
+.instructions__2__upperText1 {
+  text-align: center;
+  margin: 0%;
+  font-size: 2em;
+}
+@media screen and (orientation: portrait) {
+  .instructions__2__upperText1 {
+    margin: 0%;
+  }
+}
+.instructions__2__upperText2 {
+  text-align: center;
+  margin: 5%;
+  font-size: 1.5em;
+}
+@media screen and (orientation: portrait) {
+  .instructions__2__upperText2 {
+    margin: 0%;
+  }
+}
+.instructions__2__breatheAnimation {
+  margin: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: 30%;
+  z-index: 10003;
+}
+@media screen and (orientation: landscape) {
+  .instructions__2__breatheAnimation {
+    width: 20%;
+    height: 30%;
+  }
+}
+.instructions__2__breatheAnimation__1 {
+  -webkit-animation-name: scaleUp;
+          animation-name: scaleUp;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+}
+.instructions__2__breatheAnimation__2 {
+  -webkit-animation-name: scaleUpInfinite5;
+          animation-name: scaleUpInfinite5;
+  -webkit-animation-duration: 6s;
+          animation-duration: 6s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.instructions__2__breatheAnimation__3 {
+  -webkit-animation-name: scaleUpInfinite4;
+          animation-name: scaleUpInfinite4;
+  -webkit-animation-duration: 6s;
+          animation-duration: 6s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.instructions__2__breatheAnimation__4 {
+  -webkit-animation-name: scaleUpInfinite3;
+          animation-name: scaleUpInfinite3;
+  -webkit-animation-duration: 6s;
+          animation-duration: 6s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.instructions__2__breatheAnimation__5 {
+  -webkit-animation-name: scaleUpInfinite2;
+          animation-name: scaleUpInfinite2;
+  -webkit-animation-duration: 6s;
+          animation-duration: 6s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.instructions__2__breatheAnimation > img {
+  width: 20%;
+  height: 20%;
+  display: flex;
+  position: absolute;
+}
+.instructions__2__bottomText {
+  text-align: center;
+  margin: 0%;
+  font-size: 1.5em;
+}
+@media screen and (orientation: portrait) {
+  .instructions__2__bottomText {
+    margin: 0%;
+  }
+}
+.instructions__3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10003;
+  width: 30%;
+  height: 100%;
+}
+@media screen and (orientation: portrait) {
+  .instructions__3 {
+    height: 10%;
+  }
+}
+.instructions__3__start {
+  background-color: #76716a;
+  color: white;
+  padding: 1em;
+  border-radius: 2em;
+  border: 0px;
+  font-size: 1.5em;
+}
+
+@font-face {
+  font-family: CrimsonText;
+  src: url(../fonts/Crimson_Text/CrimsonText-Regular.ttf);
+}
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+    filter: opacity(0);
+  }
+  to {
+    transform: scale(1);
+    filter: opacity(1);
+  }
+}
+@keyframes fadeInLogo {
+  0% {
+    filter: opacity(0);
+  }
+  50% {
+    filter: opacity(0);
+  }
+  100% {
+    filter: opacity(1);
+  }
+}
+@keyframes slideUp {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(0%, 100%);
+  }
+}
+@keyframes scaleUp {
+  0% {
+    transform: scale(0%);
+  }
+  100% {
+    transform: scale(100%);
+  }
+}
+@keyframes scaleUpInfinite2 {
+  0% {
+    transform: scale(0%);
+  }
+  10% {
+    transform: scale(100%);
+  }
+  65% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite3 {
+  0% {
+    transform: scale(0%);
+  }
+  20% {
+    transform: scale(100%);
+  }
+  70% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite4 {
+  0% {
+    transform: scale(0%);
+  }
+  30% {
+    transform: scale(100%);
+  }
+  75% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite5 {
+  0% {
+    transform: scale(0%);
+  }
+  40% {
+    transform: scale(100%);
+  }
+  80% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+.splashScreen {
+  transition: 1s ease;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  z-index: 10010;
+  width: 100%;
+  height: 100%;
+  background-color: #dcddd8;
+  bottom: 0%;
+}
+.splashScreen__logo {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: 30%;
+  z-index: 10011;
+}
+@media screen and (orientation: landscape) {
+  .splashScreen__logo {
+    width: 15%;
+    height: 15%;
+  }
+}
+.splashScreen__logo__graph {
+  -webkit-animation-name: zoomIn;
+          animation-name: zoomIn;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+}
+.splashScreen__logo__text {
+  -webkit-animation-name: fadeInLogo;
+          animation-name: fadeInLogo;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+}
+.splashScreen__logo > img {
+  display: flex;
+  position: absolute;
+}
+
+@font-face {
+  font-family: CrimsonText;
+  src: url(../fonts/Crimson_Text/CrimsonText-Regular.ttf);
+}
+@font-face {
+  font-family: CrimsonText;
+  src: url(../fonts/Crimson_Text/CrimsonText-Regular.ttf);
+}
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+    filter: opacity(0);
+  }
+  to {
+    transform: scale(1);
+    filter: opacity(1);
+  }
+}
+@keyframes fadeInLogo {
+  0% {
+    filter: opacity(0);
+  }
+  50% {
+    filter: opacity(0);
+  }
+  100% {
+    filter: opacity(1);
+  }
+}
+@keyframes slideUp {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(0%, 100%);
+  }
+}
+@keyframes scaleUp {
+  0% {
+    transform: scale(0%);
+  }
+  100% {
+    transform: scale(100%);
+  }
+}
+@keyframes scaleUpInfinite2 {
+  0% {
+    transform: scale(0%);
+  }
+  10% {
+    transform: scale(100%);
+  }
+  65% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite3 {
+  0% {
+    transform: scale(0%);
+  }
+  20% {
+    transform: scale(100%);
+  }
+  70% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite4 {
+  0% {
+    transform: scale(0%);
+  }
+  30% {
+    transform: scale(100%);
+  }
+  75% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+@keyframes scaleUpInfinite5 {
+  0% {
+    transform: scale(0%);
+  }
+  40% {
+    transform: scale(100%);
+  }
+  80% {
+    transform: scale(100%);
+  }
+  100% {
+    transform: scale(0%);
+  }
+}
+.backToInstructions {
+  position: absolute;
+  top: 20px;
+  padding: 12px 6px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 100px;
+  background: rgba(0, 0, 0, 0.1);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  opacity: 0.5;
+  outline: none;
+  z-index: 10001;
+  cursor: pointer;
+  left: calc(50% - 25px);
+  width: 50px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "CrimsonText";
+}
+
+body {
+  overflow: hidden;
+}
+
+canvas {
+  background: #000000;
+}/*# sourceMappingURL=index.css.map */
