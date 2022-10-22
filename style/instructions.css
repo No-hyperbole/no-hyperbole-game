@@ -217,6 +217,7 @@
 @media screen and (orientation: portrait) {
   .instructions__1 {
     height: 30%;
+    width: 100%;
   }
 }
 .instructions__1__logo {
@@ -251,6 +252,7 @@
 @media screen and (orientation: portrait) {
   .instructions__2 {
     height: 50%;
+    width: 100%;
   }
 }
 .instructions__2__upperText1 {
@@ -354,6 +356,7 @@
 @media screen and (orientation: portrait) {
   .instructions__3 {
     height: 10%;
+    width: 100%;
   }
 }
 .instructions__3__start {
